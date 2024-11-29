@@ -6,7 +6,7 @@ from django.conf import settings
 
 app_name = 'djangoapp'
 urlpatterns = [
-    # # path for registration
+    # path('about/', TemplateView.as_view(template_name="About.html")),
 
     # path for login
     # path(route='login', view=views.login_user, name='login'),
