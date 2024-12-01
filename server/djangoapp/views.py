@@ -1,4 +1,3 @@
-# Uncomment the required imports before adding the code
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.contrib.auth.models import User
@@ -7,6 +6,7 @@ from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from datetime import datetime
 import logging
+from .models import CarMake, CarModel
 import json
 
 # Get an instance of a logger
@@ -97,3 +97,15 @@ def get_dealer_details(request, dealer_id):
 def add_review(request):
     # Implement this to handle review submissions
     pass
+
+# Function to get cars
+def get_cars(request):
+    count = CarMake.objects.filter().count()
+    print(count)
+    if count == 0:
+        initiate()
+    car_models = CarModel.objects.select_related('car_make')
+    cars = []
+    for car_model in car_models:
+        cars.append({"CarModel": car_model.name, "CarMake": car_model.car_make.name})
+    return JsonResponse({"CarModels": cars})

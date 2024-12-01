@@ -9,6 +9,7 @@ urlpatterns = [
     # path('about/', TemplateView.as_view(template_name="About.html")),
 
     #path for login
+    path(route='get_cars', view=views.get_cars, name ='getcars'),
     path(route='login', view=views.login_user, name='login'),
     path('register/', views.registration, name='register'), 
     path( 'logout/', views.logout_request, name='logout'),
